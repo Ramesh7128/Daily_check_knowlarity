@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <h1 style="margin-left: 110px">{{ users.username|title }}</h1>
+
+            {% if empl_proile %}
+            <div class="col-md-4">
+                <div><b>Employee log</b></div>
+                <div>
+                        <br><br>{{empl_proile.name}}</b><br>
+                        {{ empl_proile.designation }} - {{ empl_proile.phoneno }}
+                        <br>
+                </div><br>
+            </div>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+{% endblock %}

@@ -10,7 +10,7 @@ def get_employee_list(max_results=0, starts_with=''):
         profile_list = []
         if starts_with:
                 users = User.objects.get(username=request.user)
-                profile_list = Employee.objects.filter(users=users)
+                profile_list = Employee.objects.filter(name__istartswith=starts_with)
 
         if max_results > 0:
                 if len(profile_list) > max_results:
@@ -55,17 +55,24 @@ def addEmployees(request):
     return render_to_response('addlinks.html', context_dict, context)
 
 
-def employee_list(request):
+def employlist(request):
     context = RequestContext(request)
     starts_with=""
     context_dict = {}
-    if request.user.is_authenticated():
-        users = User.objects.get(username=request.user)
-        emp_list = Employee.objects.get(users=users)
-        context_dict['profile_list'] = emp_list
-    # if request.method == 'GET':
-    #     starts_with = request.GET['username']
-    # stud_list = get_employee_list(8, starts_with)
-
+    if request.method == 'GET':
+        starts_with = request.GET['username']
+    stud_list = get_employee_list(8, starts_with)
+    context_dict['profile_list'] = stud_list
     return render_to_response('employeelist.html', context_dict, context)
+
+def emplprofile(request,userid):
+    context = RequestContext(request)
+    context_dict = {}
+    empl_proile = Employee.objects.get(id=userid)
+    context_dict['empl_proile'] = empl_proile
+
+    return render_to_response('emplprofile.html', context_dict, context)
+
+
+
 

@@ -1,7 +1,7 @@
 <ul>
     {% if profile_list %}
         {% for pro in profile_list %}
-            <li><a href="/prof/{{ pro.user.id }}" style="color: #FFFFFF">{{ pro.name }}</a></li>
+            <li><a href="/prof/{{ pro.id }}" style="color: #FFFFFF">{{ pro.name }}</a></li>
         {% endfor %}
     {% else %}
         <li>No employees found</li>
