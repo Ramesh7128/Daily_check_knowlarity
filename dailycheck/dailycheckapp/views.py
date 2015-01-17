@@ -2,13 +2,15 @@ from django.shortcuts import render
 from models import Employee, Messages
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 
 # Create your views here.
-def get_student_list(max_results=0, starts_with=''):
+def get_employee_list(max_results=0, starts_with=''):
         profile_list = []
         if starts_with:
-                users = User.objects.filter(username__istartswith=request.user)
-                profile_list = Employee.objects.filter(user__in=users)
+                users = User.objects.get(username=request.user)
+                profile_list = Employee.objects.filter(users=users)
 
         if max_results > 0:
                 if len(profile_list) > max_results:
@@ -20,7 +22,16 @@ def get_student_list(max_results=0, starts_with=''):
 
 def index(request):
     context = RequestContext(request)
+
     context_dict = {}
+    if request.method == 'GET':
+        if request.user.is_authenticated():
+            users = User.objects.get(username=request.user)
+            emp_list = Employee.objects.filter(users=users)
+            context_dict['profile_list'] = emp_list
+
+        # context_dict['profile_list'] = profile_list
+
 
     return render_to_response('base.html', context_dict, context)
 
@@ -29,22 +40,7 @@ def addEmployees(request):
     context = RequestContext(request)
     context_dict = {}
     users = User.objects.get(username=request.user)
-    # if request.method == 'GET':
-    #     form = profileform()
-    # else:
-    #     form = profileform(request.POST)
-    #     if form.is_valid():
-    #         profiles = form.save(commit=False)
-    #
-    #         try:
-    #             users = User.objects.get(username=request.user)
-    #             profiles.users = users
-    #             profiles.save()
-    #             return HttpResponseRedirect('/')
-    #         except:
-    #             pass
-    #     else:
-    #         print form.errors
+
     if request.method=='POST':
         empl_name = request.POST.get('employeename')
         designation = request.POST.get('designation')
@@ -59,13 +55,17 @@ def addEmployees(request):
     return render_to_response('addlinks.html', context_dict, context)
 
 
-def studentlist(request):
+def employee_list(request):
     context = RequestContext(request)
     starts_with=""
     context_dict = {}
-    if request.method == 'GET':
-        starts_with = request.GET['username']
-    stud_list = get_student_list(8, starts_with)
-    context_dict['profile_list'] = stud_list
+    if request.user.is_authenticated():
+        users = User.objects.get(username=request.user)
+        emp_list = Employee.objects.get(users=users)
+        context_dict['profile_list'] = emp_list
+    # if request.method == 'GET':
+    #     starts_with = request.GET['username']
+    # stud_list = get_employee_list(8, starts_with)
+
     return render_to_response('employeelist.html', context_dict, context)
 

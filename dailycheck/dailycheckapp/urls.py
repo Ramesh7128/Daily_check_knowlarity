@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^user/', include('oautherise.urls')),
     url(r'^addEmployees/', views.addEmployees, name='addEmployees'),
+    url(r'profile/employeelist/$', views.employee_list, name='employeelist'),
 )
