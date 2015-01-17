@@ -78,7 +78,7 @@
         <a href="" class="dropdown-toggle" data-toggle="dropdown">{{user.username|title}}<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="/userprofile/{{ user.id }}">Profile</a></li>
-          <li><a href="/addlinks/">AddInfo</a></li>
+          <li><a href="/addEmployees/">AddInfo</a></li>
           <li><a href="/user/logout/">Logout</a></li>
         </ul>
       {% endif %}
@@ -127,6 +127,9 @@
 {#                    {% endifequal %}#}
 {#                {% endfor %}#}
 {#                </ul>#}
+                <div id="cats">
+                    {% include 'employeelist.html' %}
+                </div>
                 </div>
                 </div>
             <div class="col-md-10">
@@ -141,7 +144,7 @@
         <div class="foot">
         <footer>
                 <div class="container">
-                <p>&copy; StudentTracker: Social network for coders</p>
+                <p>&copy; DailyCheck: Stay connected with your employees</p>
             </div>
         </footer>
 {#        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>#}

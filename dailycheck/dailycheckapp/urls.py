@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', views.index, name='index'),
     url(r'^user/', include('oautherise.urls')),
+    url(r'^addEmployees/', views.addEmployees, name='addEmployees'),
 )
