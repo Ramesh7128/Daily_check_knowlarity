@@ -1,0 +1,1 @@
+web: gunicorn dailycheck.wsgi --log-file -
