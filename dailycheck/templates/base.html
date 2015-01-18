@@ -3,44 +3,45 @@
 <html xmlns="http://www.w3.org/1999/html">
 
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
+        <!-- Mobile support -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-        <link href="{% static 'css/bootswatch.css' %}" rel="stylesheet" media="screen">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/material/ripples.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/material/material-wfont.min.css' %}">
+
+                    <!-- Dropdown.js -->
+    <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
+
         <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js">
         </script>
-        <style>
-            .navbar {
-                padding-top: 7px;
-                background-color: #FF4719;
-                height: 70px;
-                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-                font-size: 17px;
-                font-weight: 500;
-                border-radius: 10px;
 
-            }
+        <style>
             .foot {
                 padding: 15px;
                 padding-bottom: 0px;
                 background: #F90101;
-                border-radius: 10px;
                 height: 50px;
                 color: #FFFFFF;
             }
-            .col-md-2 > .backgroun  {
+            .col-md-3 > .backgroun  {
                 padding: 15px;
                 background: #19A319;
-                border-radius: 15px;
                 height: 550px;
             }
             .text-center {
                 color: #FFFFFF;
             }
+            .jumbotron {
+  background-image:url('http://goo.gl/04j7Nn');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
         </style>
     </head>
     <body>
@@ -52,12 +53,9 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">Daily-Check</a>
+    <a class="navbar-brand" href="/">DailyCheck</a>
   </div>
   <div class="navbar-collapse collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav">
-      <li><a href="#" >About</a></li>
-    </ul>
     <form class="navbar-form navbar-left" method="post" action="/">
     <form class="navbar-form navbar-left">
       {% csrf_token %}
@@ -77,8 +75,7 @@
       {% if user.is_authenticated %}
         <a href="" class="dropdown-toggle" data-toggle="dropdown">{{user.username|title}}<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/userprofile/{{ user.id }}">Profile</a></li>
-          <li><a href="/addEmployees/">AddInfo</a></li>
+          <li><a href="/addEmployees/">Add Employees</a></li>
           <li><a href="/user/logout/">Logout</a></li>
         </ul>
       {% endif %}
@@ -104,11 +101,19 @@
             <br><br><br>
         <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-md-2">
+            <div class="row"><!--
+            <div class="jumbotron">
+    <div class="container">
+    <h1>Jumbotron</h1>
+    
+    <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <p><a class="btn btn-primary btn-lg" href="/user/register/">Sign Up</a></p>
+    </div>
+</div>-->
+                <div class="col-md-3">
                 <br>
                 <div class="backgroun">
-                <div class="text-center"><b>Employee-List</b></div><br>
+                <div class="text-center pages col-xs-10 animated bounce"><h2>Employee</h2></div><br><br><br>
 
 {#                <ul>#}
 {#                #}
@@ -132,7 +137,7 @@
                 </div>
                 </div>
                 </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
         {% block body_block %}
         {% endblock %}
         </div>
@@ -144,13 +149,21 @@
         <div class="foot">
         <footer>
                 <div class="container">
-                <p>&copy; DailyCheck: Stay connected with your employees</p>
+                <p>&copy; DailyCheck: Stay Connected With Your Employees</p>
             </div>
         </footer>
 {#        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>#}
 {#        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>#}
-{#        <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
+{#      <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
         <script src="{% static 'js/search.js' %}"></script>
+
+        <!-- Material Design for Bootstrap -->
+        <script src="{% static 'css/material/material.min.js' %}"></script>
+        <script src="{% static 'css/material/ripples.min.js' %}"></script>
+
+        <script>
+            $.material.init();
+        </script>
         </div>
     </body>
 </html>
