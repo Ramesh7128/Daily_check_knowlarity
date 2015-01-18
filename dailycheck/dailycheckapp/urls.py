@@ -9,6 +9,5 @@ urlpatterns = patterns('',
     url(r'^user/', include('oautherise.urls')),
     url(r'^addEmployees/', views.addEmployees, name='addEmployees'),
     url(r'^profile/employlist/$', views.employlist, name='employlist'),
-    url(r'prof/(?P<userid>\w+)/$', views.emplprofile, name='profile'),
-
+    url(r'^prof/(?P<userid>\w+)/$', views.emplprofile, name='profile'),
 )

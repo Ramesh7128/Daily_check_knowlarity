@@ -9,9 +9,11 @@
             <div class="col-md-4">
                 <div><b>Employee log</b></div>
                 <div>
-                        <br><br>{{empl_proile.name}}</b><br>
-                        {{ empl_proile.designation }} - {{ empl_proile.phoneno }}
+                        <br><br><b>Name : </b>{{empl_proile.name}}</b><br>
+                        <b>Designation : </b>{{ empl_proile.designation }} - {{ empl_proile.phoneno }}
                         <br>
+                    {{ post_file }}
+                    {{ url }}
                 </div><br>
             </div>
             {% endif %}

@@ -70,8 +70,14 @@ def emplprofile(request,userid):
     context_dict = {}
     empl_proile = Employee.objects.get(id=userid)
     context_dict['empl_proile'] = empl_proile
-
+    if request.method = "POST":
+        post_file = request.POST.get['post_file']
+        url = request.POST.get['url']
+    context_dict['post_file'] = post_file
+    context_dict['url'] = url
     return render_to_response('emplprofile.html', context_dict, context)
+
+
 
 
 
