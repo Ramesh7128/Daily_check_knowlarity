@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <h1 style="margin-left: 110px">{{ users.username|title }}</h1>
+
+            {% if empl_proile %}
+            <div class="col-md-4">
+                <div><b>Employee log</b></div>
+                <div>
+                        <br><br><b>Name : </b>{{empl_proile.name}}</b><br>
+                        <b>Designation : </b>{{ empl_proile.designation }} - {{ empl_proile.phoneno }}
+                        <br>
+                </div><br>
+            </div>
+            {% endif %}
+            {% for mess in messageslist %}
+            <audio controls>
+                <source src="{{ mess.messages}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p>Message Date:{{ mess.date }} </p>
+            <hr>            
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+{% endblock %}

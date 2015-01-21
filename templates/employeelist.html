@@ -1,0 +1,15 @@
+
+<ul style="list-style-type: none;">
+	<br>
+    {% if profile_list %}
+        {% for pro in profile_list %}
+            <li class="pages col-xs-10 animated fadeInUp">
+            	<a href="/prof/{{ pro.id }}" style="color: #FFFFFF">
+            	<h4>{{ pro.name }}</h4>
+            	</a>
+            </li>
+        {% endfor %}
+    {% else %}
+        <li>No Employees Found</li>
+    {% endif %}
+</ul>
